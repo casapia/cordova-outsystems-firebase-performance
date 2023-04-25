@@ -1,27 +1,42 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<plugin id="com.outsystems.plugins.firebaseperformance" version="1.0.7" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-  
+<plugin id="cordova-outsystems-firebase-performance"
+  xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  version="1.0.7.NTL1">
+
   <name>OSFirebasePerformance</name>
   <description>Plugin to support firebase performance monitoring</description>
   <author>OutSystems Inc</author>
-  
+
   <js-module name="OSFirebasePerformance" src="www/OSFirebasePerformance.js">
-    <clobbers target="cordova.plugins.OSFirebasePerformance"/>
+    <merges target="cordova.plugins.OSFirebasePerformance" />
   </js-module>
 
-  <dependency id="cordova-outsystems-firebase-core" url="https://github.com/OutSystems/cordova-outsystems-firebase-core.git#1.0.1"/>
+  <engines>
+    <engine name="cordova" version=">=11.0.0" />
+    <engine name="cordova-android" version=">=11.0.0" />
+    <engine name="cordova-ios" version=">=6.2.0" />
+  </engines>
 
+  <dependency id="cordova-outsystems-firebase-core"
+    url="https://github.com/OutSystems/cordova-outsystems-firebase-core.git#1.0.1" />
   <preference name="PERFORMANCE_MONITORING_ENABLED" default="true" />
-  
-  <platform name="android">
 
+  <platform name="android">
     <hook type="before_plugin_install" src="hooks/android/build_gradle_add_dependency.js" />
+    <preference name="ANDROID_FIREBASE_BOM_VERSION" default="31.5.0" />
 
     <config-file parent="/*" target="res/xml/config.xml">
       <feature name="OSFirebasePerformance">
-        <param name="android-package" value="com.outsystems.plugins.firebaseperformance.OSFirebasePerformance"/>
+        <param name="android-package"
+          value="com.outsystems.plugins.firebaseperformance.OSFirebasePerformance" />
         <param name="onload" value="$PERFORMANCE_MONITORING_ENABLED" />
       </feature>
+    </config-file>
+
+    <config-file target="config.xml" parent="/*">
+      <preference name="AndroidXEnabled" value="true" />
+      <preference name="GradlePluginGoogleServicesEnabled" value="true" />
+      <preference name="GradlePluginGoogleServicesVersion" value="4.3.15" />
     </config-file>
 
     <config-file parent="/*" target="AndroidManifest.xml">
@@ -29,42 +44,46 @@
     </config-file>
 
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
-      <meta-data android:name="firebase_performance_collection_enabled" android:value="$PERFORMANCE_MONITORING_ENABLED" />
+      <meta-data android:name="firebase_performance_collection_enabled"
+        android:value="$PERFORMANCE_MONITORING_ENABLED" />
     </config-file>
 
-    <source-file src="src/android/com/outsystems/plugins/firebaseperformance/OSFirebasePerformance.java" target-dir="src/com/outsystems/plugins/firebaseperformance"/>
+    <!-- <dependency id="cordova-support-android-plugin" version="~2.0.4" /> -->
 
-    <framework src="com.google.firebase:firebase-perf:20.0.6" />
-    <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+    <framework src="platform('com.google.firebase:firebase-bom:$ANDROID_FIREBASE_BOM_VERSION')" />
+    <framework src="com.google.firebase:firebase-perf" />
+    <source-file
+      src="src/android/com/outsystems/plugins/firebaseperformance/OSFirebasePerformance.java"
+      target-dir="src/com/outsystems/plugins/firebaseperformance" />
   </platform>
-  
-  <platform name="ios">
 
-    <preference name="IOS_FIREBASE_PERFORMANCE_VERSION" default="~> 8.6.0"/>
+  <platform name="ios">
+    <preference name="IOS_FIREBASE_POD_VERSION" default="10.7.0" />
 
     <config-file parent="/*" target="config.xml">
       <feature name="OSFirebasePerformance">
-        <param name="ios-package" value="OSFirebasePerformance"/>
+        <param name="ios-package" value="OSFirebasePerformance" />
         <param name="onload" value="$PERFORMANCE_MONITORING_ENABLED" />
       </feature>
     </config-file>
 
-     <config-file target="*-Info.plist" parent="FIREBASE_PERFORMANCE_COLLECTION_ENABLED">
-            <string>$PERFORMANCE_MONITORING_ENABLED</string>
-     </config-file>
+    <config-file target="*-Info.plist" parent="FIREBASE_PERFORMANCE_COLLECTION_ENABLED">
+      <string>$PERFORMANCE_MONITORING_ENABLED</string>
+    </config-file>
 
-     <dependency id="cordova-plugin-add-swift-support" url="https://github.com/OutSystems/cordova-plugin-add-swift-support.git#2.0.3-OS1"/>
+    <dependency id="cordova-plugin-add-swift-support"
+      url="https://github.com/OutSystems/cordova-plugin-add-swift-support.git#2.0.3-OS1" />
 
-    <source-file src="src/ios/OSFirebasePerformance.swift"/>
-    <source-file src="src/ios/FirebasePerformancePlugin.swift"/>
+    <source-file src="src/ios/OSFirebasePerformance.swift" />
+    <source-file src="src/ios/FirebasePerformancePlugin.swift" />
 
     <podspec>
-        <config>
-            <source url="https://cdn.cocoapods.org/" />
-        </config>
-        <pods>
-            <pod name="Firebase/Performance" spec="$IOS_FIREBASE_PERFORMANCE_VERSION" />
-        </pods>
+      <config>
+        <source url="https://cdn.cocoapods.org/" />
+      </config>
+      <pods use-frameworks="true">
+        <pod name="Firebase/Performance" spec="$IOS_FIREBASE_POD_VERSION" />
+      </pods>
     </podspec>
   </platform>
 </plugin>
