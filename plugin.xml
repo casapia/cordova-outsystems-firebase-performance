@@ -22,7 +22,7 @@
   <preference name="PERFORMANCE_MONITORING_ENABLED" default="true" />
 
   <platform name="android">
-    <hook type="before_plugin_install" src="hooks/android/build_gradle_add_dependency.js" />
+    <!-- <hook type="before_plugin_install" src="hooks/android/build_gradle_add_dependency.js" /> -->
     <preference name="ANDROID_FIREBASE_BOM_VERSION" default="31.4.0" />
 
     <config-file parent="/*" target="res/xml/config.xml">
@@ -46,12 +46,15 @@
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
       <meta-data android:name="firebase_performance_collection_enabled"
         android:value="$PERFORMANCE_MONITORING_ENABLED" />
+        <agregar debug param>
     </config-file>
 
     <!-- <dependency id="cordova-support-android-plugin" version="~2.0.4" /> -->
 
     <framework src="platform('com.google.firebase:firebase-bom:$ANDROID_FIREBASE_BOM_VERSION')" />
     <framework src="com.google.firebase:firebase-perf" />
+    <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+
     <source-file
       src="src/android/com/outsystems/plugins/firebaseperformance/OSFirebasePerformance.java"
       target-dir="src/com/outsystems/plugins/firebaseperformance" />
