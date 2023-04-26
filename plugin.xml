@@ -20,6 +20,7 @@
   <dependency id="cordova-outsystems-firebase-core"
     url="https://github.com/OutSystems/cordova-outsystems-firebase-core.git#1.0.1" />
   <preference name="PERFORMANCE_MONITORING_ENABLED" default="true" />
+  <preference name="PERFORMANCE_LOGCAT_ENABLED" default="false" />
 
   <platform name="android">
     <!-- <hook type="before_plugin_install" src="hooks/android/build_gradle_add_dependency.js" /> -->
@@ -46,7 +47,9 @@
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
       <meta-data android:name="firebase_performance_collection_enabled"
         android:value="$PERFORMANCE_MONITORING_ENABLED" />
-        <agregar debug param>
+      <meta-data
+        android:name="firebase_performance_logcat_enabled"
+        android:value="$PERFORMANCE_LOGCAT_ENABLED" />
     </config-file>
 
     <!-- <dependency id="cordova-support-android-plugin" version="~2.0.4" /> -->
