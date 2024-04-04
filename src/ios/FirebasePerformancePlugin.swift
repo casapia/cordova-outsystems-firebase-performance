@@ -3,13 +3,20 @@
 //  Firebase Sample App
 //
 //  Created by Carlos Correa on 12/03/2021.
-//
+//  Updated by AC 202304
 
 import Foundation
 import Firebase
 
 class FirebasePerformancePlugin {
     var traces: [String: Trace] = [:]
+    
+    init() {
+        print("Starting Firebase Performance plugin")
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()
+        }
+    }
     
     func starTrace(traceName: String){
         if !traceName.isEmpty {

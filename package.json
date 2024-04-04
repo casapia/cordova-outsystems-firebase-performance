@@ -8,7 +8,7 @@
     "cordova-ios"
   ],
   "cordova": {
-    "id": "com.outsystems.plugins.firebaseperformance",
+    "id": "cordova-outsystems-firebase-performance",
     "platforms": [
       "android",
       "ios"
