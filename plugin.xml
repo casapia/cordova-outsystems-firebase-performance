@@ -22,7 +22,7 @@
 
   <platform name="android">
     <!-- <hook type="before_plugin_install" src="hooks/android/build_gradle_add_dependency.js" /> -->
-    <preference name="ANDROID_FIREBASE_BOM_VERSION" default="32.8.0" />
+    <preference name="ANDROID_FIREBASE_BOM_VERSION" default="32.7.1" />
 
     <config-file parent="/*" target="res/xml/config.xml">
       <feature name="OSFirebasePerformance">
