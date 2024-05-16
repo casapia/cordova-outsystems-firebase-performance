@@ -62,7 +62,7 @@
   </platform>
 
   <platform name="ios">
-    <preference name="IOS_FIREBASE_POD_VERSION" default="10.25.0" />
+    <preference name="IOS_FIREBASE_POD_VERSION" default="10.17.0" />
 
     <config-file parent="/*" target="config.xml">
       <feature name="OSFirebasePerformance">
