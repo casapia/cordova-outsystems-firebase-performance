@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<plugin id="com.outsystems.plugins.firebaseperformance" version="2.0.0-NTL4" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-  
+<plugin id="com.outsystems.plugins.firebaseperformance" version="2.0.0-NTL4"
+  xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+
   <name>OSFirebasePerformance</name>
   <description>Plugin to support firebase performance monitoring</description>
   <author>OutSystems Inc</author>
@@ -22,7 +24,7 @@
 
   <platform name="android">
     <!-- <hook type="before_plugin_install" src="hooks/android/build_gradle_add_dependency.js" /> -->
-    <preference name="ANDROID_FIREBASE_BOM_VERSION" default="32.8.0" />
+    <preference name="ANDROID_FIREBASE_BOM_VERSION" default="33.1.2" />
 
     <config-file parent="/*" target="res/xml/config.xml">
       <feature name="OSFirebasePerformance">
@@ -59,6 +61,7 @@
     <source-file
       src="src/android/com/outsystems/plugins/firebaseperformance/OSFirebasePerformance.java"
       target-dir="src/com/outsystems/plugins/firebaseperformance" />
+    <!-- <framework src="build.gradle" custom="true" type="gradleReference" /> -->
   </platform>
 
   <platform name="ios">
