@@ -34,11 +34,11 @@
       </feature>
     </config-file>
 
-    <config-file target="config.xml" parent="/*">
+    <!-- <config-file target="config.xml" parent="/*">
       <preference name="AndroidXEnabled" value="true" />
       <preference name="GradlePluginGoogleServicesEnabled" value="true" />
       <preference name="GradlePluginGoogleServicesVersion" value="4.3.8" />
-    </config-file>
+    </config-file> -->
 
     <config-file parent="/*" target="AndroidManifest.xml">
       <uses-permission android:name="android.permission.INTERNET" />
@@ -61,7 +61,6 @@
     <source-file
       src="src/android/com/outsystems/plugins/firebaseperformance/OSFirebasePerformance.java"
       target-dir="src/com/outsystems/plugins/firebaseperformance" />
-    <!-- <framework src="build.gradle" custom="true" type="gradleReference" /> -->
   </platform>
 
   <platform name="ios">
